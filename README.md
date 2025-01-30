@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/902466173.svg)](https://doi.org/10.5281/zenodo.14771726 )
+
 # Abstract Workflow Language Schema
 
 Application of [OO-LD](https://github.com/OO-LD/schema) on [Abstract Syntax Trees](https://en.wikipedia.org/wiki/Abstract_syntax_tree) in order share workflow descriptions and map them to RDF.

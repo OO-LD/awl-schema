@@ -1,4 +1,4 @@
-[![DOI](https://zenodo.org/badge/902466173.svg)](https://doi.org/10.5281/zenodo.14771726 )
+[![DOI](https://zenodo.org/badge/902466173.svg)](https://doi.org/10.5281/zenodo.14771726     )
 
 # Abstract Workflow Language Schema
 
@@ -234,3 +234,363 @@ while (
     i += 1
 ```
 > Specific procedure
+
+<details>
+<summary>AST</summary>
+
+```yml
+_type: Module
+body:
+  - _type: Assign
+    targets:
+      - _type: Name
+        id: i
+    value:
+      _type: Constant
+      value: 0
+  - _type: While
+    body:
+      - _type: Expr
+        value:
+          _type: Call
+          args:
+            - _type: Call
+              args: []
+              func:
+                _type: Name
+                id: ChargingParam
+              keywords:
+                - _type: keyword
+                  arg: target_voltage
+                  value:
+                    _type: Call
+                    args:
+                      - _type: Constant
+                        value: 4.2
+                    func:
+                      _type: Name
+                      id: Voltage
+                    keywords: []
+                - _type: keyword
+                  arg: c_rate
+                  value:
+                    _type: Call
+                    args:
+                      - _type: Constant
+                        value: 0.23
+                    func:
+                      _type: Name
+                      id: CRate
+                    keywords: []
+          func:
+            _type: Attribute
+            attr: charge
+            value:
+              _type: Name
+              id: battery
+          keywords: []
+      - _type: Expr
+        value:
+          _type: Call
+          args:
+            - _type: Call
+              args: []
+              func:
+                _type: Name
+                id: ChargingParam
+              keywords:
+                - _type: keyword
+                  arg: target_voltage
+                  value:
+                    _type: Call
+                    args:
+                      - _type: Constant
+                        value: 3.7
+                    func:
+                      _type: Name
+                      id: Voltage
+                    keywords: []
+                - _type: keyword
+                  arg: c_rate
+                  value:
+                    _type: Call
+                    args:
+                      - _type: Constant
+                        value: 0.23
+                    func:
+                      _type: Name
+                      id: CRate
+                    keywords: []
+          func:
+            _type: Attribute
+            attr: discharge
+            value:
+              _type: Name
+              id: battery
+          keywords: []
+      - _type: Expr
+        value:
+          _type: Call
+          args:
+            - _type: Call
+              args: []
+              func:
+                _type: Name
+                id: RestParam
+              keywords:
+                - _type: keyword
+                  arg: duration
+                  value:
+                    _type: Call
+                    args:
+                      - _type: Constant
+                        value: 10
+                    func:
+                      _type: Name
+                      id: Duration
+                    keywords: []
+          func:
+            _type: Attribute
+            attr: rest
+            value:
+              _type: Name
+              id: battery
+          keywords: []
+      - _type: Expr
+        value:
+          _type: Call
+          args:
+            - _type: Call
+              args:
+                - _type: BinOp
+                  left:
+                    _type: Call
+                    args: []
+                    func:
+                      _type: Name
+                      id: StateOfHealth
+                    keywords: []
+                  op:
+                    _type: Sub
+                  right:
+                    _type: Call
+                    args:
+                      - _type: Constant
+                        value: 0.1
+                    func:
+                      _type: Name
+                      id: StateOfHealth
+                    keywords: []
+              func:
+                _type: Attribute
+                attr: get
+                value:
+                  _type: Name
+                  id: battery
+              keywords: []
+          func:
+            _type: Attribute
+            attr: set
+            value:
+              _type: Name
+              id: battery
+          keywords: []
+      - _type: AugAssign
+        op:
+          _type: Add
+        target:
+          _type: Name
+          id: i
+        value:
+          _type: Constant
+          value: 1
+    orelse: []
+    test:
+      _type: BoolOp
+      op:
+        _type: And
+      values:
+        - _type: Compare
+          comparators:
+            - _type: Constant
+              value: 1000
+          left:
+            _type: Name
+            id: i
+          ops:
+            - _type: Lt
+        - _type: Compare
+          comparators:
+            - _type: Call
+              args:
+                - _type: Constant
+                  value: 100
+              func:
+                _type: Name
+                id: Temperature
+              keywords: []
+          left:
+            _type: Call
+            args:
+              - _type: Name
+                id: Temperature
+            func:
+              _type: Attribute
+              attr: get
+              value:
+                _type: Name
+                id: battery
+            keywords: []
+          ops:
+            - _type: Lt
+        - _type: Compare
+          comparators:
+            - _type: Call
+              args:
+                - _type: Constant
+                  value: 80
+              func:
+                _type: Name
+                id: StateOfHealth
+              keywords: []
+          left:
+            _type: Call
+            args:
+              - _type: Name
+                id: StateOfHealth
+            func:
+              _type: Attribute
+              attr: get
+              value:
+                _type: Name
+                id: battery
+            keywords: []
+          ops:
+            - _type: Gt
+type_ignores: []
+
+```
+
+</details>
+
+
+<details>
+<summary>RDF</summary>
+
+```turtle
+<https://example.org/CRate> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/Function> .
+<https://example.org/ChargingParam> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/Function> .
+<https://example.org/Duration> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/Function> .
+<https://example.org/RestParam> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/Function> .
+<https://example.org/StateOfHealth> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/Function> .
+<https://example.org/Voltage> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/Function> .
+<https://example.org/battery> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/Function> .
+<https://example.org/i> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/Variable> .
+_:b0 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/Module> .
+_:b0 <https://oo-ld.github.io/awl-schema/HasPart> _:b1 .
+_:b0 <https://oo-ld.github.io/awl-schema/HasPart> _:b2 .
+_:b1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/Assign> .
+_:b1 <https://oo-ld.github.io/awl-schema/HasTarget> <https://example.org/i> .
+_:b1 <https://oo-ld.github.io/awl-schema/HasValue> "0"^^<https://oo-ld.github.io/awl-schema/Constant> .
+_:b10 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/keyword> .
+_:b10 <https://oo-ld.github.io/awl-schema/HasKey> "c_rate" .
+_:b10 <https://oo-ld.github.io/awl-schema/HasValue> _:b11 .
+_:b11 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/Call> .
+_:b11 <https://oo-ld.github.io/awl-schema/HasArgument> _:b12 .
+_:b11 <https://oo-ld.github.io/awl-schema/HasFunctionCall> <https://example.org/CRate> .
+_:b12 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/Constant> .
+_:b12 <https://oo-ld.github.io/awl-schema/HasValue> "2.3E-1"^^<http://www.w3.org/2001/XMLSchema#double> .
+_:b13 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://example.org/Attribute> .
+_:b13 <https://oo-ld.github.io/awl-schema/HasValue> <https://example.org/battery> .
+_:b14 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/Expr> .
+_:b14 <https://oo-ld.github.io/awl-schema/HasValue> _:b15 .
+_:b15 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/Call> .
+_:b15 <https://oo-ld.github.io/awl-schema/HasArgument> _:b16 .
+_:b15 <https://oo-ld.github.io/awl-schema/HasFunctionCall> _:b23 .
+_:b16 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/Call> .
+_:b16 <https://oo-ld.github.io/awl-schema/HasFunctionCall> <https://example.org/ChargingParam> .
+_:b16 <https://oo-ld.github.io/awl-schema/HasKeywordArgument> _:b17 .
+_:b16 <https://oo-ld.github.io/awl-schema/HasKeywordArgument> _:b20 .
+_:b17 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/keyword> .
+_:b17 <https://oo-ld.github.io/awl-schema/HasKey> "target_voltage" .
+_:b17 <https://oo-ld.github.io/awl-schema/HasValue> _:b18 .
+_:b18 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/Call> .
+_:b18 <https://oo-ld.github.io/awl-schema/HasArgument> _:b19 .
+_:b18 <https://oo-ld.github.io/awl-schema/HasFunctionCall> <https://example.org/Voltage> .
+_:b19 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/Constant> .
+_:b19 <https://oo-ld.github.io/awl-schema/HasValue> "3.7E0"^^<http://www.w3.org/2001/XMLSchema#double> .
+_:b2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/While> .
+_:b2 <https://oo-ld.github.io/awl-schema/HasCondition> _:b3 .
+_:b2 <https://oo-ld.github.io/awl-schema/HasPart> _:b14 .
+_:b2 <https://oo-ld.github.io/awl-schema/HasPart> _:b24 .
+_:b2 <https://oo-ld.github.io/awl-schema/HasPart> _:b31 .
+_:b2 <https://oo-ld.github.io/awl-schema/HasPart> _:b38 .
+_:b2 <https://oo-ld.github.io/awl-schema/HasPart> _:b4 .
+_:b20 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/keyword> .
+_:b20 <https://oo-ld.github.io/awl-schema/HasKey> "c_rate" .
+_:b20 <https://oo-ld.github.io/awl-schema/HasValue> _:b21 .
+_:b21 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/Call> .
+_:b21 <https://oo-ld.github.io/awl-schema/HasArgument> _:b22 .
+_:b21 <https://oo-ld.github.io/awl-schema/HasFunctionCall> <https://example.org/CRate> .
+_:b22 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/Constant> .
+_:b22 <https://oo-ld.github.io/awl-schema/HasValue> "2.3E-1"^^<http://www.w3.org/2001/XMLSchema#double> .
+_:b23 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://example.org/Attribute> .
+_:b23 <https://oo-ld.github.io/awl-schema/HasValue> <https://example.org/battery> .
+_:b24 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/Expr> .
+_:b24 <https://oo-ld.github.io/awl-schema/HasValue> _:b25 .
+_:b25 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/Call> .
+_:b25 <https://oo-ld.github.io/awl-schema/HasArgument> _:b26 .
+_:b25 <https://oo-ld.github.io/awl-schema/HasFunctionCall> _:b30 .
+_:b26 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/Call> .
+_:b26 <https://oo-ld.github.io/awl-schema/HasFunctionCall> <https://example.org/RestParam> .
+_:b26 <https://oo-ld.github.io/awl-schema/HasKeywordArgument> _:b27 .
+_:b27 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/keyword> .
+_:b27 <https://oo-ld.github.io/awl-schema/HasKey> "duration" .
+_:b27 <https://oo-ld.github.io/awl-schema/HasValue> _:b28 .
+_:b28 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/Call> .
+_:b28 <https://oo-ld.github.io/awl-schema/HasArgument> _:b29 .
+_:b28 <https://oo-ld.github.io/awl-schema/HasFunctionCall> <https://example.org/Duration> .
+_:b29 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/Constant> .
+_:b29 <https://oo-ld.github.io/awl-schema/HasValue> "10"^^<http://www.w3.org/2001/XMLSchema#integer> .
+_:b3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/BoolOp> .
+_:b30 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://example.org/Attribute> .
+_:b30 <https://oo-ld.github.io/awl-schema/HasValue> <https://example.org/battery> .
+_:b31 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/Expr> .
+_:b31 <https://oo-ld.github.io/awl-schema/HasValue> _:b32 .
+_:b32 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/Call> .
+_:b32 <https://oo-ld.github.io/awl-schema/HasArgument> _:b33 .
+_:b32 <https://oo-ld.github.io/awl-schema/HasFunctionCall> _:b37 .
+_:b33 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/Call> .
+_:b33 <https://oo-ld.github.io/awl-schema/HasArgument> _:b34 .
+_:b33 <https://oo-ld.github.io/awl-schema/HasFunctionCall> _:b36 .
+_:b34 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/BinOp> .
+_:b34 <https://oo-ld.github.io/awl-schema/HasLeftHandComparator> _:b35 .
+_:b35 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/Call> .
+_:b35 <https://oo-ld.github.io/awl-schema/HasFunctionCall> <https://example.org/StateOfHealth> .
+_:b36 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://example.org/Attribute> .
+_:b36 <https://oo-ld.github.io/awl-schema/HasValue> <https://example.org/battery> .
+_:b37 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://example.org/Attribute> .
+_:b37 <https://oo-ld.github.io/awl-schema/HasValue> <https://example.org/battery> .
+_:b38 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/AugAssign> .
+_:b38 <https://oo-ld.github.io/awl-schema/HasValue> "1"^^<https://oo-ld.github.io/awl-schema/Constant> .
+_:b4 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/Expr> .
+_:b4 <https://oo-ld.github.io/awl-schema/HasValue> _:b5 .
+_:b5 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/Call> .
+_:b5 <https://oo-ld.github.io/awl-schema/HasArgument> _:b6 .
+_:b5 <https://oo-ld.github.io/awl-schema/HasFunctionCall> _:b13 .
+_:b6 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/Call> .
+_:b6 <https://oo-ld.github.io/awl-schema/HasFunctionCall> <https://example.org/ChargingParam> .
+_:b6 <https://oo-ld.github.io/awl-schema/HasKeywordArgument> _:b10 .
+_:b6 <https://oo-ld.github.io/awl-schema/HasKeywordArgument> _:b7 .
+_:b7 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/keyword> .
+_:b7 <https://oo-ld.github.io/awl-schema/HasKey> "target_voltage" .
+_:b7 <https://oo-ld.github.io/awl-schema/HasValue> _:b8 .
+_:b8 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/Call> .
+_:b8 <https://oo-ld.github.io/awl-schema/HasArgument> _:b9 .
+_:b8 <https://oo-ld.github.io/awl-schema/HasFunctionCall> <https://example.org/Voltage> .
+_:b9 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://oo-ld.github.io/awl-schema/Constant> .
+_:b9 <https://oo-ld.github.io/awl-schema/HasValue> "4.2E0"^^<http://www.w3.org/2001/XMLSchema#double> .
+
+```
+
+</details>

@@ -1,4 +1,11 @@
-[![DOI](https://zenodo.org/badge/902466173.svg)](https://doi.org/10.5281/zenodo.14771726     )
+[![DOI](https://zenodo.org/badge/902466173.svg)](https://doi.org/10.5281/zenodo.14771726)
+
+## Background
+Workflows play an essential part in structuring the processing of both physical objects and data. 
+Despite the relevance of detailed information about the processing history of a resulting asset for provenance, compareability and reproduceability 
+a detailed and machine readable description of the workflow is usually not part of our scientific work and publication.
+AWL and AWL-LD address this issue by creating tools and definitions to document both experimental and computational workflows. 
+The aim is to provide common notations for workflows in order to generate a semantic description that allows further analytics and transformations based on OO-LD.
 
 # Abstract Workflow Language Schema
 

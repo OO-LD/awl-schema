@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+title: The Abstract Workflow Language (AWL) and it's Linked Data extension (AWL-LD)
+type: software
+authors:
+  - family-names: Stier
+    given-names: Simon P.
+    orcid: 'https://orcid.org/0000-0003-0410-3616'
+  - family-names: Gold
+    given-names: Lukas
+    orcid: 'https://orcid.org/0000-0001-7444-2969'
+  - family-names: Wilhelm
+    given-names:  Nicolas
+  - family-names: Nusko
+    given-names:   Daniel
+repository-code: 'https://github.com/OO-LD/awl-schema'
+url: 'https://github.com/OO-LD/awl-schema'
+abstract: >-
+  Workflows play an essential part in structuring the processing of both physical objects and data. 
+  Despite the relevance of detailed information about the processing history of a resulting asset for provenance, compareability and reproduceability 
+  a detailed and machine readable description of the workflow is usually not part of our scientific work and publication.
+  AWL and AWL-LD address this issue by creating tools and definitions to document both experimental and computational workflows. 
+  The aim is to provide common notations for workflows in order to generate a semantic description that allows further analytics and transformations based on OO-LD.
+keywords:
+  - workflow language
+  - workflow specification
+  - workflow execution
+  - linked-data
+  - rdf
+  - json-ld
+  - abstract syntax tree
+  - tracing
+license: CC-BY-4.0

@@ -203,6 +203,131 @@ _:b4 <https://oo-ld.github.io/awl-schema/HasFunctionCall> <https://example.org/r
 ```
 > RDF
 
+## Code Execution
+
+Beside the static code analysis with AST we can also trace the actual code execution e.g. with the [python tracing module](https://docs.python.org/3/library/trace.html).
+This provides us with a detailed log about the called functions, taken paths in control structures (If-Else, While), state of internal variables and timing information.
+
+Example (see also [playground](https://oo-ld.github.io/playground-awl?data=N4Ig9gDgLglmB2BnEAuUMDGCA2MBGqIAZglAIYDuApomALZUCsIANOHgFZUZQD62ZAJ5gArlELwwAJzplsrEIgwALKrNSgAAlnhQqAD3EoA2qEryUIZVCgREKAPQOwYALTYAJgDoA5jCjKInhecA7mrkqqsg4KBoTWtvZOBmR0ENhUXtI%2BMWyaeGSIVPE2do7Obp6%2B%2FoHBoeGRamS5ILxQghDFlprtnQowHoSaAwp4YB6ChOYoABKFAApkUuJsAHKpXVojltMAakswZHgZCtqkBkZaBUUlieUpaRlZUjkgAL5vbOQvVFDIOxRsLNCgAVJY%2BX4KABuchEmxAw0GAKBc0Q%2B2wcNOOj0hg0IBhGK6CIJmI%2BbAAkkQ8YipoCUJSsedcWgQGMJrSgZSQVJSZ9wFIqNgbsj6UQAGJyG5fGhGEDTVEAYQQHn8cHgCiwaSWZCg0n%2BcrpqIASjAfNY5vAPEqtVIddIFJB9fLCgB5Tq23VSBQZIiy52IAAyVF9Fqt9Ag2s9CiIIngGGp2wNKMKYtjPDVCrk8jy2Iu1OuRISZWS%2BlS6Uy2Ra6wYHJQqbjsAQ7z54KdhsKAEEXiIGLoFLwANZUQQUaQeNvJxAAaWHo6kHi7Ph7VD7bHBtdRM8mbwAul9%2FCdLB2AOoBhS9IlgTjccR8xDKMAUXhUKRSPWEGC6F9kdNNr5RIkxjAP4oFtCAABYFDIDgyH0VBQLhNghyoCBeAQKgwCIXgSRoVAiElKg%2BQ4Wh1RZNoOiJABZcYRBONg2UmExQHIvpLHrX94AAEWDKCXn%2BZiLymbtez%2BXifH%2BUxWkEnYXig%2BBJHIRtSPgWjsDXWTLDgthcHgFcwFQABGXc2A8YMyFo0STD3EAByfUz8IsiTrNs9cUBU7A1Js0d4GwQRW1QYxrIgMASN8%2FyrLYGFbQ09zsD5BiAoEijCA7RBEFNdVtM%2FPTUAAJki2F4RYoklSQchVxAHScpQfL8UK25iwcdIhC8OhPxCMAHDwEQMCHKAHAecsvAwRAoQAfihF90rAT9yQ8ABeIgqHAxgPAATgADjId4vnBX4JKS1iQGrYo2ETERvWyyQ8t3T5DqJI1fhEKRMsqq79JQABmArCTxYrCBO%2FokRALS3t066vo%2BazTKwD1pH4GBECMQKsvBj6DLYeANkIGMGzVNDdIUAUoGepBUFiu6pOSti0yU7iqXU8S%2FukuVhJXUTGYOqmjvXNd5OAnU1XJ1TGcISZUeqxhjJAezzOwSyUa83hZccgLnIoVzYqQ7ywr4tW2GC0K%2FL1iK6uinxhY8%2BLxkYyT%2FssR6SZey60dQAA2H7MTIlnAbO4HxbB6q3ahkzuGkO0pARpH9cDiHGEx7HLFxji2lHImnpe%2F4KZYe7CHYumeM55nqdZpcROQIumO5oleblfnFKFtyRdLwh4wliGNsp%2B2W75hTBabJuPNFyxBnbj7O%2BhszVdN2zlan%2BWnO1zXm9snBjaZ03DbX8LFai5erfom3EurwhHdJl3qrWz2ipZgAhT83W9YNLhPyxfZARM29jj61r5KqIavuACAxcjodg8IMPkUhTTWBAUSd%2BiZR7f1QL%2FEOMsw5w0jrgaOpt%2F7jwTjWJOtN8YBAFKdEAxNSZZ1Ul3Fm%2Bc1T0zEvxV%2Bpdly6ArqXLm3da5kHrv3ZSzdXJygvhDAyRkc7MO4bwpSltPKCIIGPQyYjc4yQtr3AW0jB6yI0jLYR6MjKTwcgvY%2B3dSpIx4SsJBKBRHX1QAABmlrPFWRiZ4axiivHW69F4gC3j5TxMc95uIPqyI%2BVdu4MkPuyUJLNUrpR8K9XBhlvogG%2BBCBWyjjrYz9q3XRiTpY4VgYQTMHlGHGJ9pkj%2BwNtoKKsZ9aWycClv3KYmZOSkCZkISTUvkQ4Rxji8R0gytTpb9NqtIQUwo7bRLShlHJVj47JL2mk5h8DgZf36VLay%2BTvYlyKdmDhpSS7LMIPIyxBl1lsHqVso6hzCF4wQKnfS1TTldNnL0mOazUF6Gwek60EYBQanDJGd8UTtkIDMRVYZNiUD2Osj6F%2B3drlCMeblP%2B71DIjLsPso6ABxW8O4yTpOPMoGAdFgmRImSXGJ0zHkAHZdo%2FEWfCppwNEH9OpXk%2BqlySpZhKcCq5TLsk0poQc%2FlI8ZkGTZdZC56SEUtOIcoUhYq2VIRefOPpqKrFsqGeqgyHt%2BRjK6IrT5cKWY%2FKWGQzUvyI6cJNaC8qFj%2Bm6s2dC7Sz8GkZJrFk0Vjzg7erYI6TFRIAxQAAKLvDxUKo6Z9naPI2pC6VIqdExtQTDcOnoo7IxhdqjGIAsYEJAHQQQvA5wDiINgR86cnZk00RGokwb9AQC9I8wBmzvncsruSo6pi7ViubRypRzCu3mJ7ZC5Fkq0xuoRQWot0gS1looD255PTVVvO1Sg6yF5eAZVGU5D4QA%3D%3D%3D)):
+
+```py
+def function_one(x):
+    u = 'https://play.min.io/bucket/example.csv?versioinId=fe45d98a'
+    return x
+
+def function_two(y):
+    return y
+
+def function_three(c, d):
+    return c + d
+
+def my_workflow(a, b, d=0):
+    if a > 0:
+        c = function_one(a)
+    else:
+        c = function_two(b)
+    while d <= 0:
+        d = function_three(c, d)
+    return d
+my_workflow(1, 2)
+```
+> Workflow Code
+
+```yaml
+- func: my_workflow
+  lineno: 11
+  locals:
+    a: 1
+    b: 2
+    d: 0
+  os:
+    cores: 8
+  timestamp: 1742034345.611
+  type: call
+- func: function_one
+  lineno: 1
+  locals:
+    x: 1
+  os:
+    cores: 8
+  timestamp: 1742034345.613
+  type: call
+- func: function_one
+  lineno: 3
+  locals:
+    u: https://play.min.io/bucket/example.csv?versioinId=fe45d98a
+    x: 1
+  os:
+    cores: 8
+  timestamp: 1742034345.614
+  type: return
+- ...
+```
+> Tracing output
+
+Transforming the result with JSON-LD leads, e.g. to a list of all visited functions (see [playground](https://json-ld.org/playground/#startTab=tab-framed&json-ld=%7B%22%40context%22%3A%7B%22awl%22%3A%22https%3A%2F%2Fawl.org%2F%22%2C%22ex%22%3A%22https%3A%2F%2Fex.org%2F%22%2C%22%40base%22%3A%22https%3A%2F%2Fawl.org%2F%22%2C%22steps%22%3A%7B%22%40id%22%3A%22awl%3AHasStep%22%2C%22%40container%22%3A%22%40list%22%7D%2C%22func%22%3A%7B%22%40id%22%3A%22awl%3Acalls%22%2C%22%40type%22%3A%22%40id%22%2C%22%40context%22%3A%7B%22%40base%22%3A%22https%3A%2F%2Fex.org%2F%22%7D%7D%2C%22type%22%3A%7B%22%40id%22%3A%22%40type%22%7D%2C%22call%22%3A%7B%22%40id%22%3A%22awl%3ACall%22%7D%7D%2C%22type%22%3A%22awl%3AWorkflowRun%22%2C%22steps%22%3A%5B%7B%22code%22%3A%7B%22_type%22%3A%22FunctionDef%22%2C%22col_offset%22%3A0%2C%22lineno%22%3A7%2C%22name%22%3A%22my_workflow%22%2C%22returns%22%3Anull%7D%2C%22func%22%3A%22my_workflow%22%2C%22lineno%22%3A7%2C%22locals%22%3A%7B%22a%22%3A1%2C%22b%22%3A2%2C%22d%22%3A0%7D%2C%22type%22%3A%22call%22%7D%2C%7B%22code%22%3A%7B%22_type%22%3A%22If%22%2C%22col_offset%22%3A4%2C%22lineno%22%3A8%7D%2C%22func%22%3A%22my_workflow%22%2C%22lineno%22%3A8%2C%22locals%22%3A%7B%22a%22%3A1%2C%22b%22%3A2%2C%22d%22%3A0%7D%2C%22type%22%3A%22line%22%7D%2C%7B%22code%22%3A%7B%22_type%22%3A%22Assign%22%2C%22col_offset%22%3A8%2C%22lineno%22%3A9%7D%2C%22func%22%3A%22my_workflow%22%2C%22lineno%22%3A9%2C%22locals%22%3A%7B%22a%22%3A1%2C%22b%22%3A2%2C%22d%22%3A0%7D%2C%22type%22%3A%22line%22%7D%2C%7B%22code%22%3A%7B%22_type%22%3A%22FunctionDef%22%2C%22col_offset%22%3A0%2C%22lineno%22%3A1%2C%22name%22%3A%22function_one%22%2C%22returns%22%3Anull%7D%2C%22func%22%3A%22function_one%22%2C%22lineno%22%3A1%2C%22locals%22%3A%7B%22x%22%3A1%7D%2C%22type%22%3A%22call%22%7D%2C%7B%22code%22%3A%7B%22_type%22%3A%22Return%22%2C%22col_offset%22%3A4%2C%22lineno%22%3A2%7D%2C%22func%22%3A%22function_one%22%2C%22lineno%22%3A2%2C%22locals%22%3A%7B%22x%22%3A1%7D%2C%22type%22%3A%22line%22%7D%2C%7B%22code%22%3A%7B%22_type%22%3A%22Return%22%2C%22col_offset%22%3A4%2C%22lineno%22%3A2%7D%2C%22func%22%3A%22function_one%22%2C%22lineno%22%3A2%2C%22locals%22%3A%7B%22x%22%3A1%7D%2C%22type%22%3A%22return%22%7D%2C%7B%22code%22%3A%7B%22_type%22%3A%22While%22%2C%22col_offset%22%3A4%2C%22lineno%22%3A12%7D%2C%22func%22%3A%22my_workflow%22%2C%22lineno%22%3A12%2C%22locals%22%3A%7B%22a%22%3A1%2C%22b%22%3A2%2C%22c%22%3A1%2C%22d%22%3A0%7D%2C%22type%22%3A%22line%22%7D%2C%7B%22code%22%3A%7B%22_type%22%3A%22Assign%22%2C%22col_offset%22%3A8%2C%22lineno%22%3A13%7D%2C%22func%22%3A%22my_workflow%22%2C%22lineno%22%3A13%2C%22locals%22%3A%7B%22a%22%3A1%2C%22b%22%3A2%2C%22c%22%3A1%2C%22d%22%3A0%7D%2C%22type%22%3A%22line%22%7D%2C%7B%22code%22%3A%7B%22_type%22%3A%22FunctionDef%22%2C%22col_offset%22%3A0%2C%22lineno%22%3A5%2C%22name%22%3A%22function_three%22%2C%22returns%22%3Anull%7D%2C%22func%22%3A%22function_three%22%2C%22lineno%22%3A5%2C%22locals%22%3A%7B%22c%22%3A1%2C%22d%22%3A0%7D%2C%22type%22%3A%22call%22%7D%2C%7B%22code%22%3A%7B%22_type%22%3A%22Return%22%2C%22col_offset%22%3A4%2C%22lineno%22%3A6%7D%2C%22func%22%3A%22function_three%22%2C%22lineno%22%3A6%2C%22locals%22%3A%7B%22c%22%3A1%2C%22d%22%3A0%7D%2C%22type%22%3A%22line%22%7D%2C%7B%22code%22%3A%7B%22_type%22%3A%22Return%22%2C%22col_offset%22%3A4%2C%22lineno%22%3A6%7D%2C%22func%22%3A%22function_three%22%2C%22lineno%22%3A6%2C%22locals%22%3A%7B%22c%22%3A1%2C%22d%22%3A0%7D%2C%22type%22%3A%22return%22%7D%2C%7B%22code%22%3A%7B%22_type%22%3A%22While%22%2C%22col_offset%22%3A4%2C%22lineno%22%3A12%7D%2C%22func%22%3A%22my_workflow%22%2C%22lineno%22%3A12%2C%22locals%22%3A%7B%22a%22%3A1%2C%22b%22%3A2%2C%22c%22%3A1%2C%22d%22%3A1%7D%2C%22type%22%3A%22line%22%7D%2C%7B%22code%22%3A%7B%22_type%22%3A%22Return%22%2C%22col_offset%22%3A4%2C%22lineno%22%3A14%7D%2C%22func%22%3A%22my_workflow%22%2C%22lineno%22%3A14%2C%22locals%22%3A%7B%22a%22%3A1%2C%22b%22%3A2%2C%22c%22%3A1%2C%22d%22%3A1%7D%2C%22type%22%3A%22line%22%7D%2C%7B%22code%22%3A%7B%22_type%22%3A%22Return%22%2C%22col_offset%22%3A4%2C%22lineno%22%3A14%7D%2C%22func%22%3A%22my_workflow%22%2C%22lineno%22%3A14%2C%22locals%22%3A%7B%22a%22%3A1%2C%22b%22%3A2%2C%22c%22%3A1%2C%22d%22%3A1%7D%2C%22type%22%3A%22return%22%7D%5D%7D&frame=%7B%22%40context%22%3A%7B%22awl%22%3A%22https%3A%2F%2Fawl.org%2F%22%2C%22ex%22%3A%22https%3A%2F%2Fex.org%2F%22%2C%22%40base%22%3A%22https%3A%2F%2Fawl.org%2F%22%2C%22steps%22%3A%7B%22%40id%22%3A%22awl%3AHasStep%22%2C%22%40container%22%3A%22%40list%22%7D%2C%22func%22%3A%7B%22%40id%22%3A%22awl%3Acalls%22%2C%22%40type%22%3A%22%40id%22%2C%22%40context%22%3A%7B%22%40base%22%3A%22ex%22%7D%7D%2C%22type%22%3A%7B%22%40id%22%3A%22%40type%22%7D%2C%22call%22%3A%7B%22%40id%22%3A%22awl%3ACall%22%7D%7D%2C%22%40type%22%3A%22awl%3AWorkflowRun%22%2C%22steps%22%3A%7B%22%40type%22%3A%22awl%3ACall%22%7D%7D&context=%7B%7D))
+
+```json
+{
+  "@context": {
+    "awl": "https://awl.org/",
+    "ex": "https://ex.org/",
+    "@base": "https://awl.org/",
+    "steps": {
+      "@id": "awl:HasStep",
+      "@container": "@list"
+    },
+    "func": {
+      "@id": "awl:calls",
+      "@type": "@id",
+      "@context": {
+        "@base": "ex"
+      }
+    },
+    "type": {
+      "@id": "@type"
+    },
+    "call": {
+      "@id": "awl:Call"
+    }
+  },
+  "type": "awl:WorkflowRun",
+  "steps": [
+    {
+      "type": "call",
+      "func": "ex:my_workflow"
+    },
+    {
+      "type": "call",
+      "func": "ex:function_one"
+    },
+    {
+      "type": "call",
+      "func": "ex:function_three"
+    }
+  ]
+}
+```
+> JSON-LD
+
+```turtle
+_:b0 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://awl.org/WorkflowRun> .
+_:b0 <https://awl.org/HasStep> _:b4 .
+_:b1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://awl.org/Call> .
+_:b1 <https://awl.org/calls> <https://ex.org/my_workflow> .
+_:b2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://awl.org/Call> .
+_:b2 <https://awl.org/calls> <https://ex.org/function_one> .
+_:b3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://awl.org/Call> .
+_:b3 <https://awl.org/calls> <https://ex.org/function_three> .
+_:b4 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:b1 .
+_:b4 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b5 .
+_:b5 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:b2 .
+_:b5 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b6 .
+_:b6 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:b3 .
+_:b6 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+```
+> RDF
+
 ## Usecases
 
 While it wouldn't make much sense to generate AWL for a complex python program it can be the right tool to define the high-leven function calling sequence on top of base libs. 

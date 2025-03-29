@@ -1,4 +1,4 @@
-[![DOI](https://zenodo.org/badge/902466173.svg)](https://doi.org/10.5281/zenodo.14771726 )
+[![DOI](https://zenodo.org/badge/902466173.svg)](https://doi.org/10.5281/zenodo.14771726  )
 
 ## Background
 Workflows play an essential part in structuring the processing of both physical objects and data. 
@@ -408,21 +408,50 @@ While it wouldn't make much sense to generate AWL for a complex python program i
 
 Using class as type annotations of functions / workflow nodes can provide us an input-output perpective on. 
 
-```
-class RawData:
+```py
+from pydantic import BaseModel
+
+class RawData(BaseModel):
+    model_config = ConfigDict(
+        json_schema_extra={
+            "@context": {
+                "ex": "https://example.org/",
+                ...
+            },
+            "iri": "ex:RawData",  # the IRI of the class
+        }
+    )
     pass
 
-class Data:
+class Data(BaseModel):
+    model_config = ConfigDict(
+        json_schema_extra={
+            "@context": {
+                ...
+            },
+            "iri": "ex:Data",  # the IRI of the class
+        }
+    )
     pass
 
-class Plot:
+class Plot(BaseModel):
+    model_config = ConfigDict(
+        json_schema_extra={
+            "@context": {
+                ...
+            },
+            "iri": "ex:Plot",  # the IRI of the class
+        }
+    )
     pass
 
 def analyse(input: RawData) -> Data:
-    pass
+    ...
+    return Data(...)
 
 def visualize(input: Data) -> Plot:
-    pass
+    ...
+    return Plot(...)
 ```
 
 Note: Classes should be globally identifiable by their import path and/or an IRI annotation.

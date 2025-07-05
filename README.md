@@ -2,6 +2,9 @@
 
 Early Draft of an application of [OO-LD](https://github.com/OO-LD/schema) on [Abstract Syntax Trees](https://en.wikipedia.org/wiki/Abstract_syntax_tree) in order share workflow descriptions and map them bidirectional to RDF.
 
+![grafik](https://github.com/user-attachments/assets/c407bedd-386a-48e0-804d-44ef4fdae0df)
+
+
 ## Background
 Workflows play an essential part in structuring the processing of both physical objects and data. 
 Despite the relevance of detailed information about the processing history of a resulting asset for provenance, compareability and reproduceability 
@@ -979,5 +982,6 @@ _:b9 <https://oo-ld.github.io/awl-schema/HasValue> "4.2E0"^^<http://www.w3.org/2
 </details>
 
 # Further Links
+* Discussion in the scope of MADICES workflows: https://github.com/MADICES/MADICES-2025/discussions/16
+* Discussion on a possible integration with Python Workflow Definition (PWD): https://github.com/pythonworkflow/python-workflow-definition/issues/127
 * Discussion in the scope of PMD workflows: https://git.material-digital.de/workflows/pmd-workflows/-/issues/7#note_796
-* Discussion in the scope of PMD workflows: https://github.com/MADICES/MADICES-2025/discussions/16
